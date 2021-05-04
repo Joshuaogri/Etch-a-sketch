@@ -3,7 +3,6 @@ let inputnumber;
 let fill;
 let i;
 let nodeview;
-let array = [];
 
 function mainGrid() {
     inputnumber = 256;
@@ -15,7 +14,7 @@ function mainGrid() {
     }
 }
 
-window.addEventListener('load', mainGrid);
+window.addEventListener("load", mainGrid);
 
 function gridSize() {
     gridnumber = Number(prompt("Fill in number between 1 and 100"));
@@ -55,12 +54,14 @@ function gridBasis() {
     document.getElementById("btn").addEventListener("click", gridBasis);
     
     nodeview = document.getElementById("wrapper");
+
+
     
-    function show(e) {
+    function random(e) {
         e.target.style.backgroundColor = colorCreator();
     }
     
-    nodeview.addEventListener('mouseover', show, false);
+    nodeview.addEventListener("mouseover", random, false);
     
     function colorCreator() {
         let red = Math.floor(Math.random() * (255 - 0 + 1) + 0);
@@ -68,5 +69,33 @@ function gridBasis() {
         let black = Math.floor(Math.random() * (255 - 0 + 1) + 0);
         return `rgb( ${red} , ${green}, ${black})`;
     }
+    
+    function black(e) {
+        e.target.style.backgroundColor = "black"
+    }
 
-         
+    document.getElementById("btnone").addEventListener('click', function() {
+        nodeview.removeEventListener("mouseover", random);
+        nodeview.removeEventListener("mouseover", white);
+        nodeview.addEventListener("mouseover", black, false);
+  });
+
+  function random(e) {
+    e.target.style.backgroundColor = colorCreator();
+}
+
+  document.getElementById("btntwo").addEventListener('click', function() {
+    nodeview.removeEventListener("mouseover",black);
+    nodeview.removeEventListener("mouseover", white);
+    nodeview.addEventListener("mouseover", random, false);
+});
+
+function white(e) {
+    e.target.style.backgroundColor = "white"
+}
+
+document.getElementById("btnthree").addEventListener('click', function() {
+    nodeview.removeEventListener("mouseover",black);
+    nodeview.removeEventListener("mouseover", random);
+    nodeview.addEventListener("mouseover", white, false);
+});
